@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://unpkg.com/wit-js/dist/wit.min.js"></script>
+</head>
+<body>
+    <h1>Copy and Paste with Voice</h1>
+    <p class="copy-section">This is the text to copy</p>
+    <input type="text" class="paste-section" placeholder="Paste text here">
+    <br>
+    <button>Start Voice Command</button>
+    
+    <script>
+        const accessToken = 'BTD6YVO5GNMOSJBSFFCBLD7KKPLLAVET'; // Replace with your actual Wit.ai API key
+        const client = new Wit({ accessToken });
+
+        // Function to copy text
+        function copyText() {
+            const textToCopy = document.querySelector('.copy-section').textContent;
+            navigator.clipboard.writeText(textToCopy)
+                .then(() => console.log('Text copied successfully'))
+                .catch(err => console.error('Unable to copy text', err));
+        }
+
+        // Function to paste text
+        function pasteText() {
+            navigator.clipboard.readText()
+                .then(pastedText => {
+                    document.querySelector('.paste-section').value = pastedText;
+                    console.log('Text pasted successfully');
+                })
+                .catch(err => console.error('Unable to paste text', err));
+        }
+
+        // Function to handle voice command
+        function handleVoiceCommand(transcript) {
+            if (transcript.includes('copy')) {
+                copyText();
+            } else if (transcript.includes('paste')) {
+                pasteText();
+            }
+        }
+
+        // Function to transcribe speech using Wit.ai
+        function transcribeSpeech() {
+            client.transcribeSpeech()
+                .then(response => {
+                    const { _text: transcript } = response.entities;
+                    console.log('Transcript:', transcript);
+                    handleVoiceCommand(transcript);
+                })
+                .catch(err => console.error('Transcription failed', err));
+        }
+
+        // Start transcribing speech on button click
+        document.querySelector('button').addEventListener('click', () => {
+            transcribeSpeech();
+        });
+    </script>
+</body>
+</html>
