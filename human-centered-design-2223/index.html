@@ -1,66 +1,77 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://unpkg.com/wit-js/dist/wit.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="style.css" />
-  <title>Nicolette Besemer</title>
-</head>
-<body>
-    <h1>Copy and Paste with Voice</h1>
-    <p class="copy-section">This is the text to copy</p>
-    <input type="text" class="paste-section" placeholder="Paste text here">
-    <br>
-    <button>Start Voice Command</button>
-    
-    <script>
-        const accessToken = 'BTD6YVO5GNMOSJBSFFCBLD7KKPLLAVET'; // Replace with your actual Wit.ai API key
-        const client = new Wit({ accessToken });
-
-        // Function to copy text
-        function copyText() {
-            const textToCopy = document.querySelector('.copy-section').textContent;
-            navigator.clipboard.writeText(textToCopy)
-                .then(() => console.log('Text copied successfully'))
-                .catch(err => console.error('Unable to copy text', err));
-        }
-
-        // Function to paste text
-        function pasteText() {
-            navigator.clipboard.readText()
-                .then(pastedText => {
-                    document.querySelector('.paste-section').value = pastedText;
-                    console.log('Text pasted successfully');
-                })
-                .catch(err => console.error('Unable to paste text', err));
-        }
-
-        // Function to handle voice command
-        function handleVoiceCommand(transcript) {
-            if (transcript.includes('copy')) {
-                copyText();
-            } else if (transcript.includes('paste')) {
-                pasteText();
-            }
-        }
-
-        // Function to transcribe speech using Wit.ai
-        function transcribeSpeech() {
-            client.transcribeSpeech()
-                .then(response => {
-                    const { _text: transcript } = response.entities;
-                    console.log('Transcript:', transcript);
-                    handleVoiceCommand(transcript);
-                })
-                .catch(err => console.error('Transcription failed', err));
-        }
-
-        // Start transcribing speech on button click
-        document.querySelector('button').addEventListener('click', () => {
-            transcribeSpeech();
-        });
-    </script>
-</body>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      rel="stylesheet"
+      href="../human-centered-design-2223/font-awesome-4.7.0/css/font-awesome.css"
+    />
+    <link rel="stylesheet" href="../human-centered-design-2223/style.css" />
+    <title>Nicolette Test</title>
+  </head>
+    <section>
+      <h1>Kopieer tekst</h1>
+      <p>Geocologie is de studie van de interactie tussen levende organismen en de aarde. Een interessant kort weetje over geocologie is dat sommige onderzoekers geloven dat planten kunnen communiceren met elkaar en met andere organismen in hun omgeving via ondergrondse netwerken van schimmels, die bekend staan als mycorrhiza-netwerken. Deze schimmels helpen bij het transport van voedingsstoffen en water tussen planten, en kunnen ook dienen als een communicatiesysteem dat planten waarschuwt voor gevaarlijke roofdieren of ziekteverwekkers in hun omgeving. Dit soort ontdekkingen tonen aan hoe complex en verbonden de natuurlijke systemen op onze planeet werken.</p>
+      <h2>Plak tekst hier</h2>
+      <form>
+        <input
+          type="tekst"
+          placeholder="Plak hier je tekst"
+          class="input-text"
+        />
+      </form>
+    </section>
+    <div class="menu-right-bottom">
+      <details open>
+        <summary>
+          <i class="fa fa-plus-circle" aria-hidden="true"></i>
+        </summary>
+        <ul>
+          <li>
+            <button class="kopieer-knop">
+              <i class="fa fa-scissors" aria-hidden="true"></i
+                ><span class="hover-text">Kopieer Tekst</span>
+              </button>
+            </li>
+            <li>
+              <button class="plak-knop">
+                <i class="fa fa-pencil" aria-hidden="true"></i
+                ><span class="hover-text">Plak Tekst</span>
+              </button>
+            </li>
+            <li>
+              <button class="selecteer-knop">
+                <i class="fa fa-play-circle" aria-hidden="true"></i
+                ><span class="hover-text">Selecteer Tekst</span>
+              </button>
+            </li>
+          <li>
+            <button class="stop-knop">
+              <i class="fa fa-ban" aria-hidden="true"></i
+              ><span class="hover-text">Stop Selectie</span>
+            </button>
+          </li>
+          <li>
+            <button class="scrol-boven-knop">
+              <i class="fa fa-chevron-circle-up" aria-hidden="true"></i
+              ><span class="hover-text">Scroll naar Boven</span>
+            </button>
+          </li>
+          <li>
+            <button class="scrol-onder-knop">
+              <i class="fa fa-chevron-circle-down" aria-hidden="true"></i
+              ><span class="hover-text">Scroll naar Onder</span>
+            </button>
+          </li>
+          <li>
+            <button class="vulkaan-knop">
+              <i class="fa fa-fire" aria-hidden="true"></i><span class="hover-text">Uitbarsting!</span>
+            </button>
+          </li>
+        </ul>
+      </details>
+    </div>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><h3>Hallo</h3><br><br><br><br><br><br>
+    <script src="script.js"></script>
+  </body>
 </html>

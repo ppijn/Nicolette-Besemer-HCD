@@ -1,53 +1,232 @@
-body {
-  background-color: #f2f2f2;
-  font-family: 'Helvetica Neue', sans-serif;
+:root {
+  --bgcolor: #006416;
+  --brcolor: #1c531c;
+  --tcolor: #ffffff;
+  --tcolorh: #00ff08;
+  --tcolora: #26ff00;
 }
 
-h1 {
-  font-size: 3rem;
-  text-align: center;
-  margin-top: 5rem;
-  color: #333333;
+* {
+  margin: 0px;
+  padding: 0px;
 }
 
-p.copy-section {
-  font-size: 2rem;
-  text-align: center;
-  color: #333333;
-  margin-top: 3rem;
+/* ---- Menu Styling ---- */
+.menu-right-bottom {
+  margin: 0px 0px;
+  padding: 10px 20px 0px 0px;
+  width: 400px;
+  float: right;
+  position: fixed;
+  bottom: 20px;
+  right: 0px;
+}
+ul {
+  margin: 0px 0px 0px 85px;
+  padding: 0px;
+  top: 0px;
+  left: 0px;
+  position: absolute;
+}
+.menu-left-vertical details {
+  width: 50px;
+  height: 50px;
+}
+.menu-right-vertical details {
+  width: 50px;
+  height: 50px;
+  float: right;
+  margin: 0px 20px 0px 0px;
+}
+.menu-left-vertical details[open] {
+  height: 544px;
+  width: 85px;
+}
+.menu-right-vertical details[open] {
+  height: 544px;
+  width: 85px;
+}
+.menu-right-vertical details ul li {
+  list-style: none;
+  float: none;
+  margin: 0px;
+}
+.menu-left-vertical details ul li {
+  list-style: none;
+  float: none;
+  margin: 0px;
 }
 
-input.paste-section {
-  font-size: 2rem;
-  text-align: center;
-  margin-top: 2rem;
-  padding: 1rem;
-  border-radius: 0.5rem;
-  border: none;
-  background-color: #ffffff;
-  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2);
-  width: 40rem;
-  margin-left: auto;
-  margin-right: auto;
+.menu-left-vertical details ul,
+.menu-right-vertical details ul {
+  margin: 85px 0px 0px 0px;
+  padding: 0px;
+}
+.menu-left-vertical details ul li a,
+.menu-right-vertical details ul li a {
+  text-decoration: none;
+  color: var(--tcolor);
   display: block;
+  padding: 0em;
+  width: 85px;
+  height: 85px;
+  text-align: center;
+  box-sizing: border-box;
+  margin: -1px 0px 0px 0px;
+  border-top: 1px solid var(--brcolor);
+  border-bottom: 1px solid var(--brcolor);
+  border-right: none;
+  border-left: none;
+  transition: all 0.5s ease-in-out;
 }
-
-button {
-  background-color: #78c5b4;
-  border: none;
-  color: #ffffff;
-  font-size: 2rem;
-  padding: 1rem 2rem;
-  border-radius: 0.5rem;
-  margin-top: 2rem;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2);
+.menu-right-top details,
+.menu-right-bottom details {
+  transform: rotate(180deg);
+  float: right;
 }
-
-button:hover {
-  background-color: #3c9890;
+.menu-right-top ul li,
+.menu-right-bottom ul li {
+  transform: rotate(180deg);
+}
+details {
+  width: 85px;
+  height: 85px;
+  background-color: var(--bgcolor);
+  position: relative;
+  border-radius: 85px;
+  transition: all 0.5s ease-in-out;
+  box-shadow: 0px 0px 5px 0px var(--bgcolor);
+  overflow: hidden;
+}
+summary {
+  width: 85px;
+  height: 85px;
+  background-color: var(--bgcolor);
+  font-size: 1.5em;
+  text-align: center;
+  list-style-type: none;
+  line-height: 85px;
   cursor: pointer;
- 
+  padding: 0px;
+  margin: 0px;
+  border-radius: 50px;
+  color: var(--tcolor);
+}
+
+details[open] {
+  width: 680px;
+  height: 85px;
+  border-radius: 50px;
+}
+details[open] summary.fa-plus {
+  transform: rotate(30deg);
+}
+
+ul li {
+  list-style: none;
+  float: left;
+  margin: 0px;
+}
+.menu-right-bottom ul li button {
+  text-decoration: none;
+  color: var(--tcolor);
+  display: block;
+  padding: 0em;
+  width: 85px;
+  height: 85px;
+  background-color: var(--bgcolor);
+  text-align: center;
+  box-sizing: border-box;
+  margin: 0px 0px 0px -1px;
+  border: none;
+  /* border-left: 1px solid var(--brcolor);
+  border-right: 1px solid var(--brcolor); */
+  transition: all 0.5s ease-in-out;
+}
+
+.menu-right-bottom ul li .fa {
+  font-size: 2.55em;
+  line-height: 85px;
+}
+.menu-left-vertical details ul li button i:hover,
+.menu-right-vertical details ul li button i:hover {
+  color: var(--tcolorh);
+}
+.menu-left-vertical details ul li button i:active,
+.menu-right-vertical details ul li button i:active {
+  color: var(--tcolora);
+}
+ul li button i:hover {
+  color: var(--tcolorh);
+  cursor: pointer;
+  transform: scale(1.5);
+}
+ul li button i.active {
+  color: var(--tcolora);
+}
+
+ul li button span {
+  position: absolute;
+  top: 0px;
+  /* right: 10px; */
+  width: 120px;
+  /* height: 0px; */
+  /* z-index: -1; */
+  justify-content: center;
+  align-items: center;
+  background-color: #eee;
+  border-radius: 10px;
+  color: #000;
+  display: none;
+}
+
+button:hover span {
+  display: block;
+}
+
+/*  ---- Kopieer stuk Styling ---- */
+
+section,
+h3 {
+  /* margin: auto auto; */
+  margin-left: 100px;
+  margin-top: 100px;
+  /* padding-bottom: 25px; */
+  height: 400px;
+  width: 600px;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin-bottom: 15px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.input-text {
+  height: 50px;
+  width: 100%;
+  padding: 5px 5px;
+}
+
+/* Fire */
+
+.fire {
+  position: absolute;
+  z-index: 1;
+  font-size: 30px;
+  animation: fire 1s ease-in-out infinite;
+}
+
+@keyframes fire {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
